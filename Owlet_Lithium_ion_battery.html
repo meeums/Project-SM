@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lithium-ion Battery Specification | Product E-Label</title>
+  <!-- Load Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Load Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'Noto Sans Thai', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans antialiased min-h-screen flex flex-col">
+
+  <!-- Top Navigation / Action Bar -->
+  <header class="bg-white border-b border-slate-200 sticky top-0 z-30 shadow-sm">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 py-3 flex flex-wrap items-center justify-between gap-3">
+      <div class="flex items-center gap-2.5">
+        <div class="w-9 h-9 rounded-lg bg-emerald-600 text-white flex items-center justify-center shadow-sm">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <rect x="2" y="7" width="16" height="10" rx="2" ry="2"></rect>
+            <line x1="22" y1="11" x2="22" y2="13"></line>
+            <line x1="6" y1="10" x2="6" y2="14"></line>
+            <line x1="10" y1="10" x2="10" y2="14"></line>
+          </svg>
+        </div>
+        <div>
+          <span class="text-xs font-semibold uppercase tracking-wider text-emerald-700 block">Product Specification</span>
+          <h1 class="text-sm sm:text-base font-bold text-slate-900 leading-tight">Lithium ion battery</h1>
+        </div>
+      </div>
+
+      <!-- Interactive Controls -->
+      <div class="flex items-center gap-2">
+        <div class="bg-slate-100 p-1 rounded-lg border border-slate-200 flex text-xs font-medium">
+          <button id="btn-digital" onclick="switchView('digital')" class="px-3 py-1.5 rounded-md bg-white text-slate-900 shadow-sm transition-all">
+            Digital Spec View
+          </button>
+          <button id="btn-print" onclick="switchView('print')" class="px-3 py-1.5 rounded-md text-slate-600 hover:text-slate-900 transition-all">
+            Print Label View
+          </button>
+        </div>
+
+        <button onclick="copySpecs()" class="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 active:scale-95 text-white text-xs font-medium transition-all shadow-sm" title="คัดลอกข้อมูลสเปกทั้งหมด">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+          </svg>
+          <span class="hidden sm:inline">Copy Specs</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="fixed bottom-5 right-5 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
+    <div class="bg-slate-900 text-white px-4 py-3 rounded-xl shadow-lg flex items-center gap-2.5 text-sm font-medium">
+      <svg class="w-5 h-5 text-emerald-400 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
+      </svg>
+      <span id="toast-message">คัดลอกข้อมูลสเปกเรียบร้อยแล้ว</span>
+    </div>
+  </div>
+
+  <!-- Main Content Area -->
+  <main class="flex-1 max-w-4xl w-full mx-auto px-4 sm:px-6 py-6 sm:py-8">
+
+    <!-- VIEW 1: DIGITAL SPECIFICATION VIEW -->
+    <div id="view-digital" class="space-y-6">
+      
+      <!-- Hero Banner -->
+      <section class="bg-white rounded-2xl border border-slate-200 p-5 sm:p-6 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div class="space-y-1.5">
+          <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-semibold">
+            <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+            Component Specification • ข้อมูลจำเพาะแบตเตอรี่
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">Lithium ion battery</h2>
+          <p class="text-sm text-slate-500">
+            Dual-Model Technical Specifications, Safety Cautions & Regulatory Symbols
+          </p>
+        </div>
+
+        <div class="bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 shrink-0 self-start sm:self-auto">
+          <span class="text-[11px] font-semibold uppercase tracking-wider text-slate-400 block">Owlet</span>
+          <span class="text-sm font-bold text-slate-900">Sensor (OSS) and Base (OBL)</span>
+        </div>
+      </section>
+
+      <!-- Electrical Specifications -->
+      <section class="space-y-3">
+        <div class="flex items-center justify-between px-1">
+          <h3 class="text-sm font-bold uppercase tracking-wider text-slate-700">
+            Electrical Specifications <span class="font-normal text-slate-500 normal-case">(ข้อมูลจำเพาะทางไฟฟ้า)</span>
+          </h3>
+          <span class="text-xs text-slate-500">2 Models Listed</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- Model 1 -->
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm hover:border-emerald-300 transition-colors">
+            <div class="flex items-start justify-between gap-2 pb-3 mb-3 border-b border-slate-100">
+              <div>
+                <span class="inline-block px-2 py-0.5 rounded text-[11px] font-semibold bg-blue-50 text-blue-700 mb-1">
+                  Batt OSS Model
+                </span>
+                <h4 class="font-mono text-lg font-bold text-slate-900">ABI-M1254S4-03</h4>
+              </div>
+              <div class="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center font-bold text-xs">#1</div>
+            </div>
+
+            <dl class="grid grid-cols-2 gap-3 text-sm">
+              <div class="bg-slate-50 p-3 rounded-xl border border-slate-100">
+                <dt class="text-xs text-slate-500">Voltage</dt>
+                <dd class="font-mono text-base font-bold text-slate-900 mt-0.5">3.85V</dd>
+              </div>
+              <div class="bg-slate-50 p-3 rounded-xl border border-slate-100">
+                <dt class="text-xs text-slate-500">Capacity</dt>
+                <dd class="font-mono text-base font-bold text-slate-900 mt-0.5">72mAh</dd>
+              </div>
+              <div class="bg-slate-50 p-3 rounded-xl border border-slate-100">
+                <dt class="text-xs text-slate-500">Energy</dt>
+                <dd class="font-mono text-base font-bold text-slate-900 mt-0.5">0.277Wh</dd>
+              </div>
+              <div class="bg-slate-50 p-3 rounded-xl border border-slate-100">
+                <dt class="text-xs text-slate-500">Net Weight</dt>
+                <dd class="font-mono text-base font-bold text-slate-900 mt-0.5">1.9g</dd>
+              </div>
+            </dl>
+          </div>
+
+          <!-- Model 2 -->
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm hover:border-emerald-300 transition-colors">
+            <div class="flex items-start justify-between gap-2 pb-3 mb-3 border-b border-slate-100">
+              <div>
+                <span class="inline-block px-2 py-0.5 rounded text-[11px] font-semibold bg-indigo-50 text-indigo-700 mb-1">
+                  Batt OBL Model
+                </span>
+                <h4 class="font-mono text-lg font-bold text-slate-900">ABI-H300919</h4>
+              </div>
+              <div class="w-8 h-8 rounded-lg bg-indigo-50 text-indigo-600 flex items-center justify-center font-bold text-xs">#2</div>
+            </div>
+
+            <dl class="grid grid-cols-2 gap-3 text-sm">
+              <div class="bg-slate-50 p-3 rounded-xl border border-slate-100">
+                <dt class="text-xs text-slate-500">Voltage</dt>
+                <dd class="font-mono text-base font-bold text-slate-900 mt-0.5">3.7V</dd>
+              </div>
+              <div class="bg-slate-50 p-3 rounded-xl border border-slate-100">
+                <dt class="text-xs text-slate-500">Capacity</dt>
+                <dd class="font-mono text-base font-bold text-slate-900 mt-0.5">37mAh</dd>
+              </div>
+              <div class="bg-slate-50 p-3 rounded-xl border border-slate-100">
+                <dt class="text-xs text-slate-500">Energy</dt>
+                <dd class="font-mono text-base font-bold text-slate-900 mt-0.5">0.137Wh</dd>
+              </div>
+              <div class="bg-slate-50 p-3 rounded-xl border border-slate-100">
+                <dt class="text-xs text-slate-500">Net Weight</dt>
+                <dd class="font-mono text-base font-bold text-slate-900 mt-0.5">1.05+0.3g</dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <!-- Manufacturer Information -->
+      <section class="bg-white rounded-2xl border border-slate-200 p-5 sm:p-6 shadow-sm space-y-3">
+        <h3 class="text-sm font-bold uppercase tracking-wider text-slate-700 border-b border-slate-100 pb-3">
+          Manufacturer <span class="font-normal text-slate-500 normal-case">(ข้อมูลผู้ผลิต)</span>
+        </h3>
+        <div class="space-y-2 text-sm">
+          <p class="font-bold text-slate-900 text-base">Guangdong Mic-power New Energy Co.,Ltd</p>
+          <div class="flex items-start gap-2 text-slate-600 leading-relaxed">
+            <svg class="w-4 h-4 text-slate-400 shrink-0 mt-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+            </svg>
+            <span>No.4xingju west road,Dongxing District,Dongjiang Hi-Tech Industrial park,Huizhou,China,516005</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Safety Cautions & Precision Vector Symbols -->
+      <section class="bg-white rounded-2xl border border-slate-200 p-5 sm:p-6 shadow-sm space-y-5">
+        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 pb-3">
+          <h3 class="text-sm font-bold uppercase tracking-wider text-slate-700">
+            CAUTION & Regulatory Symbols <span class="font-normal text-slate-500 normal-case">(คำเตือนและสัญลักษณ์มาตรฐาน)</span>
+          </h3>
+          <span class="inline-flex items-center gap-1 text-xs font-semibold text-rose-700 bg-rose-50 border border-rose-200 px-2.5 py-0.5 rounded-full">
+            CAUTION
+          </span>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          <!-- Cautions List -->
+          <ul class="lg:col-span-6 space-y-2.5">
+            <li class="flex items-center gap-3 p-2.5 rounded-xl bg-rose-50/50 border border-rose-100 text-sm">
+              <span class="w-6 h-6 rounded-full bg-rose-100 text-rose-600 flex items-center justify-center shrink-0 font-bold text-xs">!</span>
+              <div>
+                <span class="font-semibold text-slate-900">-Do not disassemble or modify</span>
+                <span class="text-xs text-slate-500 block">ห้ามแกะ ดัดแปลง หรือทำลายตัวแบตเตอรี่</span>
+              </div>
+            </li>
+            <li class="flex items-center gap-3 p-2.5 rounded-xl bg-rose-50/50 border border-rose-100 text-sm">
+              <span class="w-6 h-6 rounded-full bg-rose-100 text-rose-600 flex items-center justify-center shrink-0 font-bold text-xs">!</span>
+              <div>
+                <span class="font-semibold text-slate-900">-Do not short-circuit</span>
+                <span class="text-xs text-slate-500 block">ห้ามทำให้เกิดการลัดวงจร</span>
+              </div>
+            </li>
+            <li class="flex items-center gap-3 p-2.5 rounded-xl bg-rose-50/50 border border-rose-100 text-sm">
+              <span class="w-6 h-6 rounded-full bg-rose-100 text-rose-600 flex items-center justify-center shrink-0 font-bold text-xs">!</span>
+              <div>
+                <span class="font-semibold text-slate-900">-Do not dispose in fire</span>
+                <span class="text-xs text-slate-500 block">ห้ามทิ้งลงในกองไฟ</span>
+              </div>
+            </li>
+            <li class="flex items-center gap-3 p-2.5 rounded-xl bg-rose-50/50 border border-rose-100 text-sm">
+              <span class="w-6 h-6 rounded-full bg-rose-100 text-rose-600 flex items-center justify-center shrink-0 font-bold text-xs">!</span>
+              <div>
+                <span class="font-semibold text-slate-900">-Do not expose to high temperature</span>
+                <span class="text-xs text-slate-500 block">ห้ามวางไว้ในที่ที่มีอุณหภูมิสูง</span>
+              </div>
+            </li>
+          </ul>
+
+          <!-- High-Precision Vector Symbols Grid -->
+          <div class="lg:col-span-6 bg-slate-50 border border-slate-200 rounded-2xl p-5">
+            <span class="text-xs font-semibold uppercase tracking-wider text-slate-500 block mb-4 text-center">
+              Regulatory & Safety Symbols
+            </span>
+            
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 items-center justify-items-center">
+              
+              <!-- 1. Official CE Mark -->
+              <div class="flex flex-col items-center text-center">
+                <div class="h-16 flex items-center justify-center">
+                  <svg viewBox="0 0 112 76" class="h-11 w-auto fill-black">
+                    <path d="M 42,8 A 30,30 0 1,0 42,68 L 42,58.5 A 20.5,20.5 0 1,1 42,17.5 Z"/>
+                    <path d="M 102,8 A 30,30 0 1,0 102,68 L 102,58.5 A 20.5,20.5 0 0,1 82.1,42.75 L 96.5,42.75 L 96.5,33.25 L 82.1,33.25 A 20.5,20.5 0 0,1 102,17.5 Z"/>
+                  </svg>
+                </div>
+                <span class="text-[11px] leading-tight text-slate-900 font-medium mt-1"></span>
+              </div>
+
+              <!-- 2. Detailed WEEE Crossed-out Wheelie Bin -->
+              <div class="flex flex-col items-center text-center">
+                <div class="h-16 flex items-center justify-center">
+                  <svg viewBox="0 0 100 124" class="h-14 w-auto">
+                    <polygon points="27,23 73,23 68,83 32,83" fill="none" stroke="#000" stroke-width="4.2" stroke-linejoin="round"/>
+                    <line x1="23" y1="22" x2="77" y2="22" stroke="#000" stroke-width="4.5" stroke-linecap="square"/>
+                    <path d="M 27,22 Q 50,11 71,20" fill="none" stroke="#000" stroke-width="4"/>
+                    <rect x="31" y="13" width="5.5" height="8" fill="none" stroke="#000" stroke-width="3.5"/>
+                    <rect x="44" y="11" width="13" height="6" fill="none" stroke="#000" stroke-width="3.5"/>
+                    <circle cx="74" cy="18" r="4.5" fill="#f8fafc" stroke="#000" stroke-width="3.8"/>
+                    <polygon points="73,23 79,23 79,34 73,34" fill="none" stroke="#000" stroke-width="3.5"/>
+                    <rect x="42" y="34" width="20" height="8" fill="none" stroke="#000" stroke-width="3.5"/>
+                    <rect x="34" y="83" width="5.5" height="7.5" fill="none" stroke="#000" stroke-width="3.5"/>
+                    <circle cx="67" cy="82" r="9" fill="#f8fafc" stroke="#000" stroke-width="4.2"/>
+                    <circle cx="67" cy="82" r="2.8" fill="#000"/>
+                    <line x1="10" y1="7" x2="90" y2="92" stroke="#000" stroke-width="4.2" stroke-linecap="square"/>
+                    <line x1="90" y1="7" x2="10" y2="92" stroke="#000" stroke-width="4.2" stroke-linecap="square"/>
+                    <rect x="14" y="103" width="72" height="13" fill="#000"/>
+                  </svg>
+                </div>
+                <span class="text-[10px] leading-tight text-slate-900 font-medium mt-1">
+                  Do not discard with household waste
+                </span>
+              </div>
+
+              <!-- 3. Accurate 3-Arrow Möbius Recycle Loop (Li-ion) -->
+              <div class="flex flex-col items-center text-center">
+                <div class="h-16 flex items-center justify-center">
+                  <svg viewBox="0 0 120 110" class="h-14 w-auto fill-black">
+                    <g>
+                      <path d="M 48,6 L 78,6 C 84,6 88,9 91,15 L 96,23 L 106,17 L 91,41 L 64,41 L 74,35 L 62,15 C 59,10 54,7 48,6 Z"/>
+                      <path d="M 21,34 L 33,14 C 37,8 43,6 49,9 C 54,12 58,17 61,23 L 44,47 L 21,34 Z"/>
+                    </g>
+                    <g transform="rotate(120 60 58)">
+                      <path d="M 48,6 L 78,6 C 84,6 88,9 91,15 L 96,23 L 106,17 L 91,41 L 64,41 L 74,35 L 62,15 C 59,10 54,7 48,6 Z"/>
+                      <path d="M 21,34 L 33,14 C 37,8 43,6 49,9 C 54,12 58,17 61,23 L 44,47 L 21,34 Z"/>
+                    </g>
+                    <g transform="rotate(240 60 58)">
+                      <path d="M 48,6 L 78,6 C 84,6 88,9 91,15 L 96,23 L 106,17 L 91,41 L 64,41 L 74,35 L 62,15 C 59,10 54,7 48,6 Z"/>
+                      <path d="M 21,34 L 33,14 C 37,8 43,6 49,9 C 54,12 58,17 61,23 L 44,47 L 21,34 Z"/>
+                    </g>
+                  </svg>
+                </div>
+                <span class="text-sm font-bold text-slate-900 leading-none mt-1">Li-ion</span>
+              </div>
+
+              <!-- 4. Detailed Fire Extinguisher + 4-Tongue Flame -->
+              <div class="flex flex-col items-center text-center">
+                <div class="h-16 flex items-center justify-center">
+                  <svg viewBox="0 0 130 106" class="h-14 w-auto">
+                    <g fill="#000">
+                      <rect x="13" y="24" width="44" height="78" rx="14"/>
+                      <rect x="13" y="75" width="44" height="27" rx="4"/>
+                      <rect x="19" y="42" width="32" height="15" rx="3" fill="#f8fafc"/>
+                      <rect x="27" y="13" width="16" height="14"/>
+                      <rect x="29" y="5" width="12" height="6" rx="2"/>
+                      <path d="M 41,8 L 51,9 C 54,9.5 55,13 53,15 C 51,16.5 47,16.5 41,16 Z"/>
+                      <path d="M 30,8 C 18,8 8,15 5,26 C 4,30 6,33 9,33 C 11.5,33 13,31 13.5,27 C 15.5,20 21,16 30,16 Z"/>
+                    </g>
+                    <g fill="#000">
+                      <path d="M 106,14 C 100,25 103,40 124,47 L 124,33 C 113,27 109,20 106,14 Z"/>
+                      <path d="M 79,20 C 92,19 98,28 103,37 C 109,46 116,51 123,54 C 112,57 98,51 91,39 C 86,31 84,24 79,20 Z"/>
+                      <path d="M 83,41 C 89,51 103,58 124,61 L 125,75 C 101,72 82,60 83,41 Z"/>
+                      <path d="M 69,68 C 82,63 93,69 101,75 C 109,81 116,82 123,81 C 116,88 101,88 90,80 C 82,74 75,70 69,68 Z"/>
+                      <path d="M 83,83 C 92,90 107,93 124,89 L 125,102 C 103,105 86,97 83,83 Z"/>
+                    </g>
+                  </svg>
+                </div>
+                <span class="text-[10px] leading-tight text-slate-900 font-medium mt-1">
+                  Use dry chemical fire extinguisher
+                </span>
+              </div>
+
+            </div>
+
+            <div class="mt-4 pt-3 border-t border-slate-200 text-center text-xs font-bold text-slate-900">
+              Made in China
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- VIEW 2: PRINT LABEL PREVIEW -->
+    <div id="view-print" class="hidden">
+      <div class="mb-4 flex items-center justify-between">
+        <p class="text-sm text-slate-600">
+          จำลองรูปแบบฉลากพิมพ์ขาว-ดำ (Physical Label Layout)
+        </p>
+        <button onclick="switchView('digital')" class="text-xs font-semibold text-emerald-700 hover:underline">
+          ← กลับไปหน้า Digital Spec View
+        </button>
+      </div>
+
+      <div class="bg-white border-[3px] border-black p-4 sm:p-6 max-w-2xl mx-auto shadow-md font-sans text-black select-all">
+        <div class="space-y-1 text-sm sm:text-base leading-snug font-medium">
+          <div class="font-bold text-base sm:text-lg">Lithium ion battery</div>
+          <div>Batt OSS Model: ABI-M1254S4-03</div>
+          <div>3.85V 72mAh 0.277Wh Net Weight: 1.9g</div>
+          <div>Batt OBL Model: ABI-H300919</div>
+          <div>3.7V 37mAh 0.137Wh Net Weight: 1.05+0.3g</div>
+          <div>Manufacturer:Guangdong Mic-power New Energy Co.,Ltd</div>
+          <div>Add: No.4xingju west road,Dongxing District,Dongjiang Hi-Tech Industrial park,Huizhou,China,516005</div>
+        </div>
+
+        <div class="mt-4 pt-3 border-t border-gray-300 flex flex-col sm:flex-row sm:items-end justify-between gap-5">
+          <div class="text-xs sm:text-sm font-medium leading-snug shrink-0">
+            <div class="font-bold">CAUTION</div>
+            <div>-Do not disassemble or modify</div>
+            <div>-Do not short-circuit</div>
+            <div>-Do not dispose in fire</div>
+            <div>-Do not expose to high temperature</div>
+          </div>
+
+          <div class="flex flex-col items-center sm:items-end">
+            <div class="grid grid-cols-2 gap-x-4 gap-y-2.5 items-center justify-items-center">
+              
+              <!-- CE -->
+              <div class="flex justify-center">
+                <svg viewBox="0 0 112 76" class="h-10 w-auto fill-black">
+                  <path d="M 42,8 A 30,30 0 1,0 42,68 L 42,58.5 A 20.5,20.5 0 1,1 42,17.5 Z"/>
+                  <path d="M 102,8 A 30,30 0 1,0 102,68 L 102,58.5 A 20.5,20.5 0 0,1 82.1,42.75 L 96.5,42.75 L 96.5,33.25 L 82.1,33.25 A 20.5,20.5 0 0,1 102,17.5 Z"/>
+                </svg>
+              </div>
+
+              <!-- Bin -->
+              <div class="flex flex-col items-center text-center">
+                <svg viewBox="0 0 100 124" class="h-11 w-auto">
+                  <polygon points="27,23 73,23 68,83 32,83" fill="none" stroke="#000" stroke-width="4.2" stroke-linejoin="round"/>
+                  <line x1="23" y1="22" x2="77" y2="22" stroke="#000" stroke-width="4.5" stroke-linecap="square"/>
+                  <path d="M 27,22 Q 50,11 71,20" fill="none" stroke="#000" stroke-width="4"/>
+                  <rect x="31" y="13" width="5.5" height="8" fill="none" stroke="#000" stroke-width="3.5"/>
+                  <rect x="44" y="11" width="13" height="6" fill="none" stroke="#000" stroke-width="3.5"/>
+                  <circle cx="74" cy="18" r="4.5" fill="#fff" stroke="#000" stroke-width="3.8"/>
+                  <polygon points="73,23 79,23 79,34 73,34" fill="none" stroke="#000" stroke-width="3.5"/>
+                  <rect x="42" y="34" width="20" height="8" fill="none" stroke="#000" stroke-width="3.5"/>
+                  <rect x="34" y="83" width="5.5" height="7.5" fill="none" stroke="#000" stroke-width="3.5"/>
+                  <circle cx="67" cy="82" r="9" fill="#fff" stroke="#000" stroke-width="4.2"/>
+                  <circle cx="67" cy="82" r="2.8" fill="#000"/>
+                  <line x1="10" y1="7" x2="90" y2="92" stroke="#000" stroke-width="4.2" stroke-linecap="square"/>
+                  <line x1="90" y1="7" x2="10" y2="92" stroke="#000" stroke-width="4.2" stroke-linecap="square"/>
+                  <rect x="14" y="103" width="72" height="13" fill="#000"/>
+                </svg>
+                <span class="text-[9px] leading-tight text-black mt-0.5">Do not discard with household waste</span>
+              </div>
+
+              <!-- Li-ion -->
+              <div class="flex flex-col items-center text-center">
+                <svg viewBox="0 0 120 110" class="h-10 w-auto fill-black">
+                  <g>
+                    <path d="M 48,6 L 78,6 C 84,6 88,9 91,15 L 96,23 L 106,17 L 91,41 L 64,41 L 74,35 L 62,15 C 59,10 54,7 48,6 Z"/>
+                    <path d="M 21,34 L 33,14 C 37,8 43,6 49,9 C 54,12 58,17 61,23 L 44,47 L 21,34 Z"/>
+                  </g>
+                  <g transform="rotate(120 60 58)">
+                    <path d="M 48,6 L 78,6 C 84,6 88,9 91,15 L 96,23 L 106,17 L 91,41 L 64,41 L 74,35 L 62,15 C 59,10 54,7 48,6 Z"/>
+                    <path d="M 21,34 L 33,14 C 37,8 43,6 49,9 C 54,12 58,17 61,23 L 44,47 L 21,34 Z"/>
+                  </g>
+                  <g transform="rotate(240 60 58)">
+                    <path d="M 48,6 L 78,6 C 84,6 88,9 91,15 L 96,23 L 106,17 L 91,41 L 64,41 L 74,35 L 62,15 C 59,10 54,7 48,6 Z"/>
+                    <path d="M 21,34 L 33,14 C 37,8 43,6 49,9 C 54,12 58,17 61,23 L 44,47 L 21,34 Z"/>
+                  </g>
+                </svg>
+                <span class="text-[10px] font-bold text-black leading-none mt-0.5">Li-ion</span>
+              </div>
+
+              <!-- Fire -->
+              <div class="flex flex-col items-center text-center">
+                <svg viewBox="0 0 130 106" class="h-10 w-auto">
+                  <g fill="#000">
+                    <rect x="13" y="24" width="44" height="78" rx="14"/>
+                    <rect x="13" y="75" width="44" height="27" rx="4"/>
+                    <rect x="19" y="42" width="32" height="15" rx="3" fill="#fff"/>
+                    <rect x="27" y="13" width="16" height="14"/>
+                    <rect x="29" y="5" width="12" height="6" rx="2"/>
+                    <path d="M 41,8 L 51,9 C 54,9.5 55,13 53,15 C 51,16.5 47,16.5 41,16 Z"/>
+                    <path d="M 30,8 C 18,8 8,15 5,26 C 4,30 6,33 9,33 C 11.5,33 13,31 13.5,27 C 15.5,20 21,16 30,16 Z"/>
+                  </g>
+                  <g fill="#000">
+                    <path d="M 106,14 C 100,25 103,40 124,47 L 124,33 C 113,27 109,20 106,14 Z"/>
+                    <path d="M 79,20 C 92,19 98,28 103,37 C 109,46 116,51 123,54 C 112,57 98,51 91,39 C 86,31 84,24 79,20 Z"/>
+                    <path d="M 83,41 C 89,51 103,58 124,61 L 125,75 C 101,72 82,60 83,41 Z"/>
+                    <path d="M 69,68 C 82,63 93,69 101,75 C 109,81 116,82 123,81 C 116,88 101,88 90,80 C 82,74 75,70 69,68 Z"/>
+                    <path d="M 83,83 C 92,90 107,93 124,89 L 125,102 C 103,105 86,97 83,83 Z"/>
+                  </g>
+                </svg>
+                <span class="text-[9px] leading-tight text-black mt-0.5">Use dry chemical fire extinguisher</span>
+              </div>
+
+            </div>
+
+            <div class="text-xs font-bold mt-2 self-center">Made in China</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="bg-white border-t border-slate-200 py-4 mt-8">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-slate-500">
+      <span>Lithium ion battery • Product Specification</span>
+      <span>Owlet Baby Care, Inc.</span>
+    </div>
+  </footer>
+
+  <script>
+    function switchView(mode) {
+      const digitalView = document.getElementById('view-digital');
+      const printView = document.getElementById('view-print');
+      const btnDigital = document.getElementById('btn-digital');
+      const btnPrint = document.getElementById('btn-print');
+
+      if (mode === 'digital') {
+        digitalView.classList.remove('hidden');
+        printView.classList.add('hidden');
+        btnDigital.className = 'px-3 py-1.5 rounded-md bg-white text-slate-900 shadow-sm transition-all';
+        btnPrint.className = 'px-3 py-1.5 rounded-md text-slate-600 hover:text-slate-900 transition-all';
+      } else {
+        digitalView.classList.add('hidden');
+        printView.classList.remove('hidden');
+        btnPrint.className = 'px-3 py-1.5 rounded-md bg-white text-slate-900 shadow-sm transition-all';
+        btnDigital.className = 'px-3 py-1.5 rounded-md text-slate-600 hover:text-slate-900 transition-all';
+      }
+    }
+
+    function copySpecs() {
+      const specText = [
+        'Lithium ion battery',
+        'Batt OSS Model: ABI-M1254S4-03',
+        '3.85V 72mAh 0.277Wh Net Weight: 1.9g',
+        'Batt OBL Model: ABI-H300919',
+        '3.7V 37mAh 0.137Wh Net Weight: 1.05+0.3g',
+        'Manufacturer:Guangdong Mic-power New Energy Co.,Ltd',
+        'Add: No.4xingju west road,Dongxing District,Dongjiang Hi-Tech Industrial park,Huizhou,China,516005',
+        'CAUTION',
+        '-Do not disassemble or modify',
+        '-Do not short-circuit',
+        '-Do not dispose in fire',
+        '-Do not expose to high temperature',
+        'Made in China'
+      ].join('\n');
+
+      const textArea = document.createElement('textarea');
+      textArea.value = specText;
+      textArea.style.position = 'fixed';
+      textArea.style.left = '-9999px';
+      document.body.appendChild(textArea);
+      textArea.select();
+      
+      try {
+        document.execCommand('copy');
+        showToast('คัดลอกข้อมูลสเปกแบตเตอรี่ลงคลิปบอร์ดแล้ว');
+      } catch (err) {
+        showToast('ไม่สามารถคัดลอกได้ กรุณาลองใหม่อีกครั้ง');
+      }
+      
+      document.body.removeChild(textArea);
+    }
+
+    let toastTimeout;
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toast-message');
+      toastMsg.textContent = message;
+      
+      toast.classList.remove('translate-y-20', 'opacity-0');
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toast.classList.add('translate-y-20', 'opacity-0');
+      }, 3000);
+    }
+  </script>
+</body>
+</html>
